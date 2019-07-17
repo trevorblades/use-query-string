@@ -1,0 +1,33 @@
+{
+  "name": "use-query-string",
+  "version": "1.0.0",
+  "description": "A React hook that serializes state into the URL query string",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "query",
+    "string",
+    "querystring",
+    "serialize",
+    "state",
+    "react",
+    "hook"
+  ],
+  "author": "Trevor Blades <tdblades@gmail.com>",
+  "license": "MIT",
+  "eslintConfig": {
+    "extends": "@trevorblades"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "devDependencies": {
+    "@trevorblades/eslint-config": "^6.22.2",
+    "eslint": "^6.0.1",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}
