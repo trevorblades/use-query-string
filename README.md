@@ -4,7 +4,7 @@ A React hook that serializes state into the URL query string
 
 ```js
 import React from 'react';
-import useQueryString from 'react-query-string';
+import useQueryString from '@trevorblades/use-query-string';
 
 function ColorPicker() {
   const [{color}, setQuery] = useQueryString(
