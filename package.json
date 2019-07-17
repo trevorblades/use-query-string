@@ -16,10 +16,8 @@
     "hook"
   ],
   "author": "Trevor Blades <tdblades@gmail.com>",
+  "repository": "trevorblades/use-query-string",
   "license": "MIT",
-  "eslintConfig": {
-    "extends": "@trevorblades"
-  },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
@@ -27,6 +25,7 @@
   "devDependencies": {
     "@trevorblades/eslint-config": "^6.22.2",
     "eslint": "^6.0.1",
+    "eslint-plugin-react-hooks": "^1.6.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6"
   }

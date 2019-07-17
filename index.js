@@ -13,6 +13,6 @@ module.exports = function useQueryString(location, navigate) {
 
       return [query, setQuery];
     },
-    [location.pathname, location.search]
+    [location.pathname, location.search, navigate]
   );
 };
