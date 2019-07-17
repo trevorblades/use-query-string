@@ -1,6 +1,6 @@
 {
   "name": "@trevorblades/use-query-string",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A React hook that serializes state into the URL query string",
   "main": "index.js",
   "scripts": {
