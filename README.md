@@ -12,24 +12,38 @@ npm install use-query-string
 
 ## Usage
 
+Given a location object and a history updater function, this hook will return an array who's first element is ab object representing the current URL query string. The second element in the array is a function that serializes an object into the query string and updates the former `query` object.
+
 ```js
 import useQueryString from '@trevorblades/use-query-string';
 
-const [query, setQuery] = useQueryString(location, pushState);
+const [query, setQuery] = useQueryString(location, updateQuery);
 ```
 
-Given a location object and a history updater function, this hook will return an array who's first element is ab object representing the current URL query string. The second element in the array is a function that serializes an object into the query string and updates the former `query` object.
+The first argument passed to the hook is a [`Location`](https://developer.mozilla.org/en-US/docs/Web/API/Location) object, and the second is a history-updating function with the following signature:
+
+```ts
+(path: string) => {
+  // update the browser history
+}
+```
 
 ## Example
+
+In this example, you'll see a component using the query string to serialize some state about a selected color. The component uses the `location` object from the `window`, and a wrapper around 
 
 ```jsx
 import React from 'react';
 import useQueryString from '@trevorblades/use-query-string';
 
+function updateHistory(path) {
+  history.pushState(null, document.title, path);
+}
+
 function ColorPicker() {
   const [{color}, setQuery] = useQueryString(
     window.location,
-    path => history.pushState(null, document.title, path)
+    updateHistory
   );
 
   function handleColorChange(event) {
@@ -60,7 +74,7 @@ import {navigate} from 'gatsby';
 
 function IndexPage(props) {
   const [query, setQuery] = useQueryString(
-    props.location,
+    props.location, // pages are given a location object via props
     navigate
   );
 
@@ -68,6 +82,6 @@ function IndexPage(props) {
 }
 ```
 
-### License
+## License
 
 [MIT](./LICENSE)
