@@ -13,6 +13,8 @@ npm install use-query-string
 ## Usage
 
 ```js
+import useQueryString from '@trevorblades/use-query-string';
+
 const [query, setQuery] = useQueryString(location, pushState);
 ```
 
