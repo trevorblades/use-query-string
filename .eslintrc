@@ -1,5 +1,6 @@
 {
-  "extends": "@trevorblades",
+  "extends": "@trevorblades/eslint-config/react",
+  "parser": "babel-eslint",
   "plugins": [
     "react-hooks"
   ],

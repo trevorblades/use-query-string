@@ -1,5 +1,7 @@
 # useQueryString
 
+[![Build Status](https://travis-ci.com/trevorblades/use-query-string.svg)](https://travis-ci.com/trevorblades/use-query-string)
+
 A React hook that serializes state into the URL query string
 
 ## Installation
@@ -25,7 +27,7 @@ import useQueryString from '@trevorblades/use-query-string';
 function ColorPicker() {
   const [{color}, setQuery] = useQueryString(
     window.location,
-    history.pushState
+    path => history.pushState(null, document.title, path)
   );
 
   function handleColorChange(event) {
@@ -48,7 +50,7 @@ function ColorPicker() {
 
 If you're using Gatsby, you could pass `props.location` and the `navigate` helper function from [Gatsby Link](https://www.gatsbyjs.org/docs/gatsby-link/) as arguments to the hook.
 
-```jsx
+```js
 // pages/index.js
 import React from 'react';
 import useQueryString from '@trevorblades/use-query-string';
