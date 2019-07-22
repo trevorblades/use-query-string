@@ -2,10 +2,9 @@
   "name": "@trevorblades/use-query-string",
   "version": "1.1.0",
   "description": "A React hook that serializes state into the URL query string",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "author": "Trevor Blades <tdblades@gmail.com>",
+  "repository": "trevorblades/use-query-string",
+  "license": "MIT",
   "keywords": [
     "query",
     "string",
@@ -15,9 +14,10 @@
     "react",
     "hook"
   ],
-  "author": "Trevor Blades <tdblades@gmail.com>",
-  "repository": "trevorblades/use-query-string",
-  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "peerDependencies": {
     "react": "^16.8.0",
     "react-dom": "^16.8.0"
