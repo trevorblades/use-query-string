@@ -1,5 +1,5 @@
 src
-!/index.js
-.babelrc
 .eslintrc
 .travis.yml
+jest.config.js
+tsconfig.json

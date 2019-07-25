@@ -23,7 +23,7 @@ const [query, setQuery] = useQueryString(location, updateQuery);
 The first argument passed to the hook is a [`Location`](https://developer.mozilla.org/en-US/docs/Web/API/Location) object, and the second is a history-updating function with the following signature:
 
 ```ts
-(path: string) => {
+(path: string): void => {
   // update the browser history
 }
 ```

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "outDir": "./"
+  },
+  "files": [
+    "src/index.ts"
+  ]
+}
