@@ -1,6 +1,6 @@
 # useQueryString
 
-[![Build Status](https://travis-ci.com/trevorblades/use-query-string.svg)](https://travis-ci.com/trevorblades/use-query-string)
+[![Build Status](https://github.com/trevorblades/use-query-string/workflows/Node%20CI/badge.svg)](https://github.com/trevorblades/use-query-string/actions)
 
 A React hook that serializes state into the URL query string
 
