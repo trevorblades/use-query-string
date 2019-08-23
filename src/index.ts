@@ -1,4 +1,4 @@
-import {ParsedQuery, parse, stringify} from 'query-string';
+import {ParseOptions, ParsedQuery, parse, stringify} from 'query-string';
 import {useState} from 'react';
 
 export interface QueryStringResult {
@@ -8,9 +8,10 @@ export interface QueryStringResult {
 
 export default function useQueryString(
   location: Location,
-  navigate: (path: string) => void
+  navigate: (path: string) => void,
+  parseOptions?: ParseOptions
 ): QueryStringResult {
-  const [state, setState] = useState(parse(location.search));
+  const [state, setState] = useState(parse(location.search, parseOptions));
 
   function setQuery(values: object): void {
     const newQuery = {
