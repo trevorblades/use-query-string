@@ -7,7 +7,7 @@ A React hook that serializes state into the URL query string
 ## Installation
 
 ```bash
-npm install use-query-string
+$ npm install use-query-string
 ```
 
 ## Usage
@@ -26,6 +26,21 @@ The first argument passed to the hook is a [`Location`](https://developer.mozill
 (path: string): void => {
   // update the browser history
 }
+```
+
+## `parseOptions`
+
+You can supply an optional third argument to this hook that gets passed along as options to the parser function. These allow you to do things like automatically convert values to numbers or booleans, where appropriate. See [the `query-string` docs](https://github.com/sindresorhus/query-string#parsestring-options) for all of the accepted options.
+
+```js
+const [query, setQuery] = useQueryString(
+  location,
+  navigate,
+  {
+    parseNumbers: true,
+    parseBooleans: true
+  }
+);
 ```
 
 ## Example
