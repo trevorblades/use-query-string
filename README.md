@@ -4,6 +4,13 @@
 
 A React hook that serializes state into the URL query string
 
+- [Installation](#installation)
+- [Usage](#usage)
+- [Parser configuration](#parser-configuration)
+- [Example](#example)
+  - [Gatsby example](#gatsby-example)
+- [License](#license)
+
 ## Installation
 
 ```bash
@@ -28,7 +35,7 @@ The first argument passed to the hook is a [`Location`](https://developer.mozill
 }
 ```
 
-## `parseOptions`
+## Parser configuration
 
 You can supply an optional third argument to this hook that gets passed along as options to the parser function. These allow you to do things like automatically convert values to numbers or booleans, where appropriate. See [the `query-string` docs](https://github.com/sindresorhus/query-string#parsestring-options) for all of the accepted options.
 
