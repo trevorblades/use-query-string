@@ -12,7 +12,7 @@ npm install use-query-string
 
 ## Usage
 
-Given a location object and a history updater function, this hook will return an array who's first element is ab object representing the current URL query string. The second element in the array is a function that serializes an object into the query string and updates the former `query` object.
+Given a location object and a history updater function, this hook will return an array who's first element is an object representing the current URL query string. The second element in the array is a function that serializes an object into the query string and updates the former `query` object.
 
 ```js
 import useQueryString from '@trevorblades/use-query-string';
