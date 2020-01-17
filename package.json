@@ -15,6 +15,9 @@
     "hook"
   ],
   "main": "index.js",
+  "eslintConfig": {
+    "extends": "@trevorblades/eslint-config/typescript"
+  },
   "scripts": {
     "pretest": "eslint src/*",
     "test": "jest",

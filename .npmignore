@@ -1,5 +1,4 @@
 src
-.eslintrc
-.travis.yml
+.github
 jest.config.js
 tsconfig.json
