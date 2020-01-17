@@ -7,8 +7,9 @@ A React hook that serializes state into the URL query string
 - [Installation](#installation)
 - [Usage](#usage)
 - [Parser configuration](#parser-configuration)
-- [Example](#example)
+- [Examples](#examples)
   - [Gatsby example](#gatsby-example)
+  - [Practical example](#practical-example)
 - [License](#license)
 
 ## Installation
@@ -50,7 +51,7 @@ const [query, setQuery] = useQueryString(
 );
 ```
 
-## Example
+## Examples
 
 In this example, you'll see a component using the query string to serialize some state about a selected color. The component uses the `location` object from the `window`, and a wrapper around 
 
