@@ -104,6 +104,12 @@ function IndexPage(props) {
 }
 ```
 
+### Practical example
+
+The following CodeSandbox contains an example for working with multiple boolean filters that change something in the page and persist between reloads.
+
+[![Edit zen-stallman-6r908](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/zen-stallman-6r908?fontsize=14&hidenavigation=1&theme=dark)
+
 ## License
 
 [MIT](./LICENSE)
