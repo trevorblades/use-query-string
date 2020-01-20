@@ -23,7 +23,7 @@ $ npm install use-query-string
 Given a location object and a history updater function, this hook will return an array who's first element is an object representing the current URL query string. The second element in the array is a function that serializes an object into the query string and updates the former `query` object.
 
 ```js
-import useQueryString from '@trevorblades/use-query-string';
+import useQueryString from 'use-query-string';
 
 const [query, setQuery] = useQueryString(location, updateQuery);
 ```
@@ -57,7 +57,7 @@ In this example, you'll see a component using the query string to serialize some
 
 ```jsx
 import React from 'react';
-import useQueryString from '@trevorblades/use-query-string';
+import useQueryString from 'use-query-string';
 
 function updateHistory(path) {
   history.pushState(null, document.title, path);
@@ -92,7 +92,7 @@ If you're using Gatsby, you could pass `props.location` and the `navigate` helpe
 ```js
 // pages/index.js
 import React from 'react';
-import useQueryString from '@trevorblades/use-query-string';
+import useQueryString from 'use-query-string';
 import {navigate} from 'gatsby';
 
 function IndexPage(props) {
