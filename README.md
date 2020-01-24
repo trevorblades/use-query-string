@@ -95,7 +95,7 @@ import React from 'react';
 import useQueryString from 'use-query-string';
 import {navigate} from 'gatsby';
 
-function IndexPage(props) {
+function Home(props) {
   const [query, setQuery] = useQueryString(
     props.location, // pages are given a location object via props
     navigate
@@ -110,6 +110,52 @@ function IndexPage(props) {
 The following CodeSandbox contains an example for working with multiple boolean filters that change something in the page and persist between reloads.
 
 [![Edit zen-stallman-6r908](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/zen-stallman-6r908?fontsize=14&hidenavigation=1&theme=dark)
+
+### Updating the query string from multiple, nested components
+
+When building a complex app, you may have multiple components within a page that need to read from and write to the query string. In these cases, using a `useQueryString` hook in each component will cause your query string to fall out of sync, since each invocation of the hook [manages its own internal state](./src/index.ts#L14).
+
+To avoid this issue, I recommend using **context** to pass `query` and `setQuery` to descendant components within a page.
+
+```js
+// src/pages/billing.js
+import React, {createContext, useContext} from 'react';
+import useQueryString from 'use-query-string';
+import {navigate} from 'gatsby';
+
+// create context to use in parent and child components
+const QueryStringContext = createContext();
+
+function Billing(props) {
+  const [query, setQuery] = useQueryString(props.location, navigate);
+  return (
+    <QueryStringContext.Provider value={{query, setQuery}}>
+      <FilterInput name="client" />
+      <FilterInput name="industry"  />
+      <FilterInput name="email" />
+      {/* render table of filtered data */}
+    </QueryStringContext.Provider>
+  );
+}
+
+function FilterInput() {
+  const {query, setQuery} = useContext(QueryStringContext);
+
+  function handleChange(event) {
+    setQuery({
+      [props.name]: event.target.value
+    });
+  }
+
+  return (
+    <input
+      type="text"
+      value={query[props.name]}
+      onChange={handleChange}
+    />
+  );
+}
+```
 
 ## License
 
