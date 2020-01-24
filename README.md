@@ -130,9 +130,11 @@ function Billing(props) {
   const [query, setQuery] = useQueryString(props.location, navigate);
   return (
     <QueryStringContext.Provider value={{query, setQuery}}>
-      <FilterInput name="client" />
-      <FilterInput name="industry"  />
-      <FilterInput name="email" />
+      <div>
+        <FilterInput name="client" />
+        <FilterInput name="industry" />
+        <FilterInput name="email" />
+      </div>
       {/* render table of filtered data */}
     </QueryStringContext.Provider>
   );
@@ -142,14 +144,13 @@ function FilterInput() {
   const {query, setQuery} = useContext(QueryStringContext);
 
   function handleChange(event) {
-    setQuery({
-      [props.name]: event.target.value
-    });
+    const {name, value} = event.target;
+    setQuery({[name]: value});
   }
 
   return (
     <input
-      type="text"
+      name={props.name}
       value={query[props.name]}
       onChange={handleChange}
     />
