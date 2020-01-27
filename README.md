@@ -115,7 +115,7 @@ The following CodeSandbox contains an example for working with multiple boolean 
 
 When building a complex app, you may have multiple components within a page that need to read from and write to the query string. In these cases, using a `useQueryString` hook in each component will cause your query string to fall out of sync, since each invocation of the hook [manages its own internal state](./src/index.ts#L14).
 
-To avoid this issue, use **context** to pass `query` and `setQuery` to descendant components within a page.
+To avoid this issue, use **React context** to pass `query` and `setQuery` to descendant components within a page.
 
 ```js
 // src/pages/billing.js
