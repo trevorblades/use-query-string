@@ -53,20 +53,20 @@ const [query, setQuery] = useQueryString(
 
 ## Examples
 
-In this example, you'll see a component using the query string to serialize some state about a selected color. The component uses the `location` object from the `window`, and a wrapper around 
+In this example, you'll see a component using the query string to serialize some state about a selected color. The component uses the global [`Location`](https://developer.mozilla.org/en-US/docs/Web/API/Location) object, and a function that calls [`History.pushState`](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) to update the page URL.
 
 ```jsx
 import React from 'react';
 import useQueryString from 'use-query-string';
 
-function updateHistory(path) {
-  history.pushState(null, document.title, path);
+function updateQuery(path) {
+  window.history.pushState(null, document.title, path);
 }
 
 function ColorPicker() {
   const [{color}, setQuery] = useQueryString(
     window.location,
-    updateHistory
+    updateQuery
   );
 
   function handleColorChange(event) {
