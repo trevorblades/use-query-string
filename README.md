@@ -6,10 +6,13 @@ A React hook that serializes state into the URL query string
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Parser configuration](#parser-configuration)
+- [Configuration](#configuration)
+  - [`parseOptions`](#parseoptions)
+  - [`stringifyOptions`](#stringifyoptions)
 - [Examples](#examples)
   - [Gatsby example](#gatsby-example)
   - [Practical example](#practical-example)
+  - [An example using context](#an-example-using-context)
 - [License](#license)
 
 ## Installation
@@ -36,9 +39,11 @@ The first argument passed to the hook is a [`Location`](https://developer.mozill
 }
 ```
 
-## Parser configuration
+## Configuration
 
-You can supply an optional third argument to this hook that gets passed along as options to the parser function. These allow you to do things like automatically convert values to numbers or booleans, where appropriate. See [the `query-string` docs](https://github.com/sindresorhus/query-string#parsestring-options) for all of the accepted options.
+### `parseOptions`
+
+You can supply an optional third argument to the hook that gets passed along as options to the `parse` function. These allow you to do things like automatically convert values to numbers or booleans, when appropriate. See [the `query-string` docs](https://github.com/sindresorhus/query-string#parsestring-options) for all of the accepted options.
 
 ```js
 const [query, setQuery] = useQueryString(
@@ -47,6 +52,23 @@ const [query, setQuery] = useQueryString(
   {
     parseNumbers: true,
     parseBooleans: true
+  }
+);
+```
+
+### `stringifyOptions`
+
+You can also pass a fourth argument to the hook that gets used as options for the `stringify` function that serializes your state. This is especially useful if you need to serialize/deserialize arrays a way other than the default. See [the `query-string` docs](https://github.com/sindresorhus/query-string#stringifyobject-options) for all of the accepted options.
+
+```js
+const arrayFormat = 'comma';
+const [query, setQuery] = useQueryString(
+  location,
+  navigate,
+  {arrayFormat},
+  {
+    skipNull: true,
+    arrayFormat
   }
 );
 ```
@@ -111,7 +133,7 @@ The following CodeSandbox contains an example for working with multiple boolean 
 
 [![Edit zen-stallman-6r908](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/zen-stallman-6r908?fontsize=14&hidenavigation=1&theme=dark)
 
-### Updating the query string from multiple, nested components
+### An example using context
 
 When building a complex app, you may have multiple components within a page that need to read from and write to the query string. In these cases, using a `useQueryString` hook in each component will cause your query string to fall out of sync, since each invocation of the hook [manages its own internal state](./src/index.ts#L14).
 

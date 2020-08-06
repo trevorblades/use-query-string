@@ -1,4 +1,10 @@
-import {ParseOptions, ParsedQuery, StringifyOptions, parse, stringify} from 'query-string';
+import {
+  ParseOptions,
+  ParsedQuery,
+  StringifyOptions,
+  parse,
+  stringify
+} from 'query-string';
 import {useState} from 'react';
 
 export interface QueryStringResult {
