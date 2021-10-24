@@ -1,3 +1,4 @@
+import {Dispatch, SetStateAction, useEffect, useState} from 'react';
 import {
   ParseOptions,
   ParsedQuery,
@@ -5,11 +6,10 @@ import {
   parse,
   stringify
 } from 'query-string';
-import {useState} from 'react';
 
 export interface QueryStringResult {
   [0]: ParsedQuery;
-  [1]: (values: object) => void;
+  [1]: Dispatch<SetStateAction<ParsedQuery>>;
 }
 
 export default function useQueryString(
@@ -20,15 +20,18 @@ export default function useQueryString(
 ): QueryStringResult {
   const [state, setState] = useState(parse(location.search, parseOptions));
 
-  function setQuery(values: object): void {
-    const newQuery = {
-      ...state,
-      ...values
-    };
+  useEffect((): void => {
+    navigate(location.pathname + '?' + stringify(state, stringifyOptions));
+  }, [state]);
 
-    setState(newQuery);
-    navigate(location.pathname + '?' + stringify(newQuery, stringifyOptions));
-  }
+  const setQuery: typeof setState = (values): void => {
+    setState(
+      (state): ParsedQuery => ({
+        ...state,
+        ...(typeof values === 'function' ? values(state) : values)
+      })
+    );
+  };
 
   return [state, setQuery];
 }
