@@ -12,22 +12,33 @@ export interface QueryStringResult {
   [1]: (values: object) => void;
 }
 
+interface QueryStringOptions {
+  parseOptions?: ParseOptions;
+  stringifyOptions?: StringifyOptions;
+}
+
 export default function useQueryString(
-  location: Location,
-  navigate: (path: string) => void,
-  parseOptions?: ParseOptions,
-  stringifyOptions?: StringifyOptions
+  initialState?: ParsedQuery,
+  options: QueryStringOptions = {}
 ): QueryStringResult {
-  const [state, setState] = useState(parse(location.search, parseOptions));
+  const {parseOptions, stringifyOptions} = options;
+  const [state, setState] = useState(
+    initialState || parse(location.search, parseOptions)
+  );
 
   function setQuery(values: object): void {
-    const newQuery = {
+    const query = {
       ...state,
       ...values
     };
 
-    setState(newQuery);
-    navigate(location.pathname + '?' + stringify(newQuery, stringifyOptions));
+    setState(query);
+
+    history.pushState(
+      {},
+      '',
+      location.pathname + '?' + stringify(query, stringifyOptions)
+    );
   }
 
   return [state, setQuery];
