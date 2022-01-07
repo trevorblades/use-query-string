@@ -9,7 +9,7 @@ import {
 
 export interface QueryStringResult {
   [0]: ParsedQuery;
-  [1]: Dispatch<SetStateAction<ParsedQuery>>;
+  [1]: Dispatch<SetStateAction<Record<string, any>>>;
 }
 
 export default function useQueryString(
@@ -25,10 +25,11 @@ export default function useQueryString(
   }, [state]);
 
   const setQuery: typeof setState = (values): void => {
+    const nextState = typeof values === 'function' ? values(state) : values;
     setState(
       (state): ParsedQuery => ({
         ...state,
-        ...(typeof values === 'function' ? values(state) : values)
+        ...nextState
       })
     );
   };
