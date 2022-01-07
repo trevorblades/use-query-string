@@ -1,4 +1,4 @@
-import {Dispatch, SetStateAction, useEffect, useState} from 'react';
+import {Dispatch, SetStateAction, useEffect, useRef, useState} from 'react';
 import {
   ParseOptions,
   ParsedQuery,
@@ -18,10 +18,15 @@ export default function useQueryString(
   parseOptions?: ParseOptions,
   stringifyOptions?: StringifyOptions
 ): QueryStringResult {
+  const isFirst = useRef(true);
   const [state, setState] = useState(parse(location.search, parseOptions));
 
   useEffect((): void => {
-    navigate(location.pathname + '?' + stringify(state, stringifyOptions));
+    if (isFirst.current) {
+      isFirst.current = false;
+    } else {
+      navigate(location.pathname + '?' + stringify(state, stringifyOptions));
+    }
   }, [state]);
 
   const setQuery: typeof setState = (values): void => {
