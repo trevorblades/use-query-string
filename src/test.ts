@@ -30,3 +30,17 @@ test('does not clobber existing params', (): void => {
   expect(history.location.search).toBe('?baz=123&foo=bar');
   expect(result.current[0].baz).toBe(123);
 });
+
+test('works with an updater function', (): void => {
+  const {result} = renderHook(
+    (): QueryStringResult =>
+      useQueryString(history.location, history.push, {parseNumbers: true})
+  );
+
+  act((): void => {
+    result.current[1](prev => ({baz: prev.baz + 1}));
+  });
+
+  expect(history.location.search).toBe('?baz=124&foo=bar');
+  expect(result.current[0].baz).toBe(124);
+});
